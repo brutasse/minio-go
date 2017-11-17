@@ -20,6 +20,7 @@ package s3signer
 import (
 	"bytes"
 	"encoding/hex"
+	"fmt"
 	"net/http"
 	"sort"
 	"strconv"
@@ -194,6 +195,7 @@ func getCanonicalRequest(req http.Request, ignoredHeaders map[string]bool) strin
 		getSignedHeaders(req, ignoredHeaders),
 		getHashedPayload(req),
 	}, "\n")
+	fmt.Printf("CANONICAL REQUEST: %s", canonicalRequest);
 	return canonicalRequest
 }
 
